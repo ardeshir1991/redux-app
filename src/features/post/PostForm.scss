@@ -1,0 +1,26 @@
+.post-form{
+    width: 50%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    form{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 10px;
+        label, input{
+            padding: 5px;
+        }
+        label{
+            text-align: start;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        input[type=button]{
+            margin: 10px auto;
+            width:50%;
+            cursor: pointer;
+        }
+    }
+}

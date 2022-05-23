@@ -1,0 +1,25 @@
+.post-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    justify-items: center;
+    align-items: center;
+    width: 50%;
+    margin: auto;
+    font-size: 2rem;
+    h2{
+        background-color: #636e72;
+        color: white;
+        width: 100%;
+        border-radius: 10px;
+        margin: 0;
+    }
+    .post{
+        font-size: 1.5rem;
+        border: 1px solid;
+        background-color: #636e72;
+        color: white;
+        border-radius: 10px;
+        width: 100%;
+    }
+}
