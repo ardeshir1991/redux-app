@@ -57,7 +57,7 @@ const postsSlice = createSlice({
         })
         .addCase(fetchReactions.fulfilled, (state,action) => {
             const {postId} = action.payload.data._id;
-            const index = state.posts.findIndex(post => post._id == postId);
+            const index = state.posts.findIndex(post => post._id === postId);
             state.posts[index] = action.payload.data;
         })
     }

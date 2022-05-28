@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import './ReactionButtons.scss';
-import { fetchReactions, reactionAdded } from "../../redux/postsSlice";
+import { fetchReactions } from "../../redux/postsSlice";
 import { useState } from "react";
 
 const ReactionButtons = ({post}) => {
@@ -14,9 +14,9 @@ const ReactionButtons = ({post}) => {
     
     const reactionHandler = (name, post)=> {
         dispatch(fetchReactions({postId: post._id, reaction: name}));
-        if(name == 'like'){
+        if(name === 'like'){
             setLike(like + 1);
-        }else if(name == 'dislike'){
+        }else if(name === 'dislike'){
             setDislike(dislike + 1)
         }
     }
@@ -25,7 +25,7 @@ const ReactionButtons = ({post}) => {
     const dispatch = useDispatch();
     const buttons = Object.entries(reactionEmojis).map(
         ([name, emoji]) => {
-            const count = name == 'like'? like : dislike;
+            const count = name === 'like'? like : dislike;
             return(
                 <button key={name} onClick={()=>reactionHandler(name, post)}>
                     {emoji} {count}

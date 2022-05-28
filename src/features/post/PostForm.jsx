@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSelector,useDispatch } from "react-redux";
-import { postAdded, saveNewPost } from "../../redux/postsSlice";
+import { saveNewPost } from "../../redux/postsSlice";
 import './PostForm.scss';
 import { allUsers, fetchUsers } from "../../redux/usersSlice";
 
