@@ -1,38 +1,39 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector,useDispatch } from "react-redux";
-import { postAdded } from "../../redux/postsSlice";
+import { postAdded, saveNewPost } from "../../redux/postsSlice";
 import './PostForm.scss';
-import { allUsers } from "../../redux/usersSlice";
+import { allUsers, fetchUsers } from "../../redux/usersSlice";
 
 const PostForm = () => {
-    const posts = useSelector(state => state.posts);
-    const users = useSelector(allUsers);
     const dispatch = useDispatch();
-    const count = posts.length;
+    useEffect(()=>{
+        dispatch(fetchUsers());
+    }, [dispatch]);
+    const users = useSelector(allUsers);
     const [title, setTiltle] = useState('');
     const [content, setContent] = useState('');
     const [userId, setUserId] = useState('');
     const onSavePost = (e)=>{
         e.preventDefault();
         if(title && content){
-            dispatch(postAdded({
-                id: count + 1,
+            dispatch(saveNewPost({
                 title,
                 content,
                 userId,
-                date: new Date(),
-                reactions:{
-                    like:0,
-                    dislike:0
-                }
+                // date: new Date().toISOString(),
+                // reactions:{
+                //     like:0,
+                //     dislike:0
+                // }
             }));
             setTiltle('');
             setContent('');
+            setUserId('');
         }
     }
 
     const userOptions = users.map(user => (
-        <option value={user.id} key={user.id}>{`${user.fname} ${user.lname}`}</option>
+        <option value={user._id} key={user._id}>{`${user.fname} ${user.lname}`}</option>
     ));
 
     const savePost = Boolean(title) && Boolean(content) && Boolean(userId);
