@@ -5,6 +5,7 @@ import Author from "../user/Author";
 import { formatDistance } from "date-fns";
 import ReactionButtons from "../buttons/ReactionButtons";
 import { useEffect } from "react";
+import { Link, Outlet } from "react-router-dom";
 
 const Posts = () => {
     const dispatch = useDispatch();
@@ -30,6 +31,7 @@ const Posts = () => {
                 <Author userId={post.userId}/>
                 <span style={{fontSize:'0.8rem'}}>{dateFormat(post.date)}</span>
                 <ReactionButtons post={post}/>
+                <Link to={`/posts/singlepost/${post._id}`}>View Post</Link>
             </div>
         ));
     }else if(status === 'failed'){
@@ -42,6 +44,7 @@ const Posts = () => {
     <section className="post-container">
         <h2>Posts</h2>
         {renderedPosts}
+        <Outlet />
     </section>
     );
 }

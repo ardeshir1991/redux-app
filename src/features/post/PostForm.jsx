@@ -3,8 +3,10 @@ import { useSelector,useDispatch } from "react-redux";
 import { saveNewPost } from "../../redux/postsSlice";
 import './PostForm.scss';
 import { allUsers, fetchUsers } from "../../redux/usersSlice";
+import { useNavigate } from "react-router-dom";
 
 const PostForm = () => {
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     useEffect(()=>{
         dispatch(fetchUsers());
@@ -29,6 +31,7 @@ const PostForm = () => {
             setTiltle('');
             setContent('');
             setUserId('');
+            navigate('/posts');
         }
     }
 
