@@ -5,17 +5,15 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { store } from './redux/store';
 import { Provider } from 'react-redux';
-// import {fetchPosts} from './redux/postsSlice';
-// import { fetchUsers } from './redux/usersSlice';
-
-// store.dispatch(fetchPosts());
-// store.dispatch(fetchUsers());
+import { BrowserRouter as Router } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <Router>
+        <App /> 
+      </Router>
     </Provider>
   </React.StrictMode>
 );
