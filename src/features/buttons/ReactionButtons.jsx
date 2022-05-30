@@ -13,12 +13,15 @@ const ReactionButtons = ({post}) => {
     const [dislike, setDislike] = useState(post.reactions.dislike);
     
     const reactionHandler = (name, post)=> {
-        dispatch(fetchReactions({postId: post._id, reaction: name}));
+        let count;
         if(name === 'like'){
-            setLike(like + 1);
+            count = like + 1;
+            setLike(count);
         }else if(name === 'dislike'){
-            setDislike(dislike + 1)
+            count = dislike + 1;
+            setDislike(count);
         }
+        dispatch(fetchReactions({postId: post._id, reaction: name, count}));
     }
 
 

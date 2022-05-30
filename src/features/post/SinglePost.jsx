@@ -7,6 +7,7 @@ import ReactionButtons from "../buttons/ReactionButtons";
 const SinglePost = () => {
     const {postId} = useParams();
     const post = useSelector(state => selectSinglePost(state, postId));
+    console.log(post);
     return ( 
         <div className="singlepost-countainer">
             <h2>{post.title}</h2>

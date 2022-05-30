@@ -25,13 +25,14 @@ const Posts = () => {
     }else if(status === 'idle'){
         const orderedPosts = posts.slice().sort((a,b) => new Date(b.date) - new Date(a.date));
         renderedPosts = orderedPosts.map(post => (
-            <div key={post.id} className='post'>
-                <h3>{post.title}</h3>
+            <div key={post._id} className='post'>
+                <h2>{post.title}</h2>
                 <p>{post.content}</p>
                 <Author userId={post.userId}/>
                 <span style={{fontSize:'0.8rem'}}>{dateFormat(post.date)}</span>
                 <ReactionButtons post={post}/>
-                <Link to={`/posts/singlepost/${post._id}`}>View Post</Link>
+                <Link className='link-style' to={`/posts/singlepost/${post._id}`}>View Post</Link> |
+                <Link className='link-style' to={`/posts/edit/${post._id}`}>Edit Post</Link>
             </div>
         ));
     }else if(status === 'failed'){
@@ -42,7 +43,7 @@ const Posts = () => {
     
     return ( 
     <section className="post-container">
-        <h2>Posts</h2>
+        <h1>Posts</h1>
         {renderedPosts}
         <Outlet />
     </section>

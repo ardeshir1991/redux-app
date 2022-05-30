@@ -20,8 +20,16 @@ export const saveNewPost = createAsyncThunk('posts/saveNewPost', async (info) =>
 export const fetchReactions = createAsyncThunk('post/fetchReactions', async info => {
     const response = await axios.post(REACTION_URL, info);
     const data = await response.data.data;
+    return data;
+})
+
+export const fetchUpdatePost = createAsyncThunk('posts/fetchUpdatePost', async (info) => {
+    const id = info.postId; 
+    const response = await axios.put(`${POSTS_URL}/${id}`, info);
+    const data = await response.data.data;
     return {data};
 })
+
 const postsSlice = createSlice({
     name:'posts',
     initialState:{
@@ -56,7 +64,12 @@ const postsSlice = createSlice({
             state.posts.push(action.payload.data)
         })
         .addCase(fetchReactions.fulfilled, (state,action) => {
-            const {postId} = action.payload.data._id;
+            const postId = action.payload._id;
+            const index = state.posts.findIndex(post => post._id === postId);
+            state.posts[index] = action.payload;
+        })
+        .addCase(fetchUpdatePost.fulfilled, (state, action)=>{
+            const postId = action.payload.data._id;
             const index = state.posts.findIndex(post => post._id === postId);
             state.posts[index] = action.payload.data;
         })

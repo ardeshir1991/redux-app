@@ -7,7 +7,7 @@
     width: 50%;
     margin: auto;
     font-size: 2rem;
-    h2{
+    h1{
         background-color: #636e72;
         color: white;
         width: 100%;
@@ -21,8 +21,14 @@
         color: white;
         border-radius: 10px;
         width: 100%;
-        h3{
+        h2{
             margin: 5px 0;
+        }
+        .link-style{
+            text-decoration: none;
+            color: #f1c40f;
+            margin-left: 5px;
+            font-size: 1rem;
         }
     }
 }

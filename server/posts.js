@@ -35,14 +35,21 @@ router.post('/posts', async(req,res)=>{
 });
 
 router.post('/postReaction', async(req,res)=>{
-    const {reaction, postId} = req.body;
-    // console.log(req.body);
+    const {reaction, postId, count} = req.body;
     const post = await Post.findById(postId);
-    // console.log(post);
-    post.reactions[reaction]++;
+    post.reactions[reaction] = count;
     await post.save();
     res.status(200).json({data: post, message:'ok'});
 });
+
+router.put('/posts/:id', async (req,res) => {
+    const id = req.params.id;
+    const post = await Post.findById(id);
+    post.title = req.body.title;
+    post.content = req.body.content;
+    await post.save();
+    res.status(200).json({data: post, message: 'ok'});
+})
 
 
 module.exports = router;
