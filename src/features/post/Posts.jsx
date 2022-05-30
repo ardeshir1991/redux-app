@@ -8,13 +8,14 @@ import { useEffect } from "react";
 import { Link, Outlet } from "react-router-dom";
 
 const Posts = () => {
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
     const status = useSelector(getStatuse);
-    useEffect(()=>{
-            dispatch(fetchPosts());
-    },[dispatch]);
+    // useEffect(()=>{
+    //         dispatch(fetchPosts());
+    // },[dispatch]);
     const posts = useSelector(allPosts);
     const errors = useSelector(getErrors);
+
     const dateFormat = (date)=>{
         return formatDistance(new Date(date), new Date(), {addSuffix: true});
     }
